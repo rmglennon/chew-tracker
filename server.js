@@ -1,6 +1,18 @@
 // require dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
+var firebase = require("firebase");
+require("dotenv").load();
+
+// Initialize Firebase
+// TODO: Replace with your project's customized code snippet
+var config = {
+    apiKey: process.env.FIREBASE_APIKEY,
+    authDomain: process.env.FIREBASE_AUTHDOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASEURL,
+    storageBucket: process.env.FIREBASE_STORAGEBUCKET
+  };
+  firebase.initializeApp(config);
 
 var PORT = process.env.PORT || 3000;
 
