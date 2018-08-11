@@ -1,0 +1,25 @@
+{
+  "name": "chew-tracker-graph",
+  "version": "1.0.0",
+  "description": "Web app tracking the number of chews",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmglennon/chew-tracker-graph.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmglennon/chew-tracker-graph/issues"
+  },
+  "homepage": "https://github.com/rmglennon/chew-tracker-graph#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
