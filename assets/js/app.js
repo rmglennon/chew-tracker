@@ -8,6 +8,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// TODO: will graphs inititalize with empty db?
+
 database.ref().on("value", function (snapshot) {
 
     var myData = snapshot.val();
@@ -29,6 +31,7 @@ database.ref().on("value", function (snapshot) {
     makeScatter(dates);
     makeBarChart(dates);
     makeBubbleChart(dates);
+    makePieChart(dates);
 
 });
 
@@ -40,7 +43,7 @@ function makeBarChart(dates) {
     };
 
     var data = [trace];
-    Plotly.newPlot('histogram', data);
+    Plotly.react('histogram', data);
 }
 
 function makeScatter(dates) {
@@ -72,7 +75,7 @@ function makeScatter(dates) {
 
     var data = [trace];
 
-    Plotly.newPlot("line-graph", data, layout);
+    Plotly.react("line-graph", data, layout);
 }
 
 function makeBubbleChart(dates) {
@@ -94,5 +97,31 @@ function makeBubbleChart(dates) {
         width: 480
     };
 
-    Plotly.newPlot('bubble-chart', data, layout);
+    Plotly.react('bubble-chart', data, layout);
+}
+
+function chewsToday(dates) {
+    const now = new Date();
+    return dates.filter(d => (
+        d.getDate() === now.getDate() &&
+        d.getMonth() === now.getMonth() &&
+        d.getFullYear() === now.getFullYear()
+    ));
+}
+
+function makePieChart(dates) {
+    const didChewToday = chewsToday(dates).length > 0;
+    const values = didChewToday ? [1, 0] : [0, 1];
+    const data = [{
+        values,
+        labels: ['Chewed today', 'Did not chew today'],
+        type: 'pie'
+    }];
+
+    const layout = {
+        title: 'Did you chew today?',
+        height: 300,
+        width: 475,
+    };
+    Plotly.react('pie-chart', data, layout);
 }
