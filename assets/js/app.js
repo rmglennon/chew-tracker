@@ -132,7 +132,7 @@ function makePieChart(todayDates) {
 
     const layout = {
         title: 'Did you chew today?',
-        height: 300,
+        height: 450,
         width: 500,
     };
     Plotly.react('pie-chart', data, layout);
