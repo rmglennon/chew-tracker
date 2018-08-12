@@ -60,11 +60,11 @@ function makeScatter(dates) {
     var trace = {
         x: dates,
         type: 'scatter',
-        mode: 'markers'
+        fill: 'tozeroy',
     };
 
     var layout = {
-        title: 'Your recent chews',
+        title: 'Your Recent Chews',
         width: 500,
         height: 450,
         xaxis: {
@@ -104,7 +104,7 @@ function makeBubbleChart(dates) {
     var data = [trace];
 
     var layout = {
-        title: 'With bubbles',
+        title: 'Chews as Bubbles',
         height: 450,
         width: 500
     };
