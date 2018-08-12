@@ -33,6 +33,7 @@ database.ref().on("value", function (snapshot) {
     makeBubbleChart(dates);
     makePieChart(dates);
     makeGaugeChart(dates);
+    makeProgressChart(dates);
 
 });
 
@@ -226,11 +227,11 @@ function makeGaugeChart(dates) {
 }
 
 
-function makePieChart(dates) {
-    const didChewToday = chewsToday(dates).length > 0;
+function makeProgressChart(dates) {
+    const recentChews = chewsToday(dates);
 
     const current = {
-        x: [dates.length],
+        x: [recentChews.length],
         y: ['chews'],
         type: 'bar',
         orientation: 'h',
