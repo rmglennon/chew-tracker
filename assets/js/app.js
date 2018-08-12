@@ -143,8 +143,8 @@ function makePieChart(todayDates) {
  */
 function recentFreqChews(todayDates) {
     const now = new Date();
-    // Get dates in the last 2 minutes
-    const threshold = 2 * 60; // 2 minutes in seconds
+    // Get dates in the last 30 seconds
+    const threshold = 30; // 30 seconds
     return todayDates.filter(d => (
         Math.floor((now.getTime() - d.getTime()) / 1000) <= threshold
     )).length;
@@ -162,9 +162,9 @@ function gaugeFactor(max, sections) {
 
 function makeGaugeChart(todayDates) {
     // based on 2 minutes
-    const maxChews = (1 * 60) * 2;  // 1 chew per second for 2 minutes
+    const maxChews = (1 * 30) * 1;  // 1 chew per second for 30 seconds
     const intervals = 6;
-    // Estimate very fast as 2 chews per second
+    // Estimate very fast as 1 chews per second
     const factor = gaugeFactor(maxChews, intervals);
     const recentChews = recentFreqChews(todayDates) || 1;
     let level = Math.floor(recentChews / factor);
