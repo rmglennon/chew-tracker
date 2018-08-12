@@ -31,9 +31,11 @@ database.ref().on("value", function (snapshot) {
     makeScatter(dates);
     makeBarChart(dates);
     makeBubbleChart(dates);
-    makePieChart(dates);
-    makeGaugeChart(dates);
-    makeProgressChart(dates);
+
+    const recentChews = chewsToday(dates);
+    makePieChart(recentChews);
+    makeGaugeChart(recentChews);
+    makeProgressChart(recentChews);
 
 });
 
@@ -111,8 +113,8 @@ function chewsToday(dates) {
     ));
 }
 
-function makePieChart(dates) {
-    const didChewToday = chewsToday(dates).length > 0;
+function makePieChart(todayDates) {
+    const didChewToday = todayDates.length > 0;
     const values = didChewToday ? [1, 0] : [0, 1];
     const data = [{
         values,
@@ -131,13 +133,11 @@ function makePieChart(dates) {
 /**
  * Helper method to get total chews in last 2 minutes
  */
-function recentFreqChews(dates) {
+function recentFreqChews(todayDates) {
     const now = new Date();
-    // filter dates first by todays date
-    const filteredDates = chewsToday(dates);
     // Get dates in the last 2 minutes
     const threshold = 2 * 60; // 2 minutes in seconds
-    return filteredDates.filter(d => (
+    return todayDates.filter(d => (
         Math.floor((now.getTime() - d.getTime()) / 1000) <= threshold
     )).length;
 }
@@ -152,10 +152,10 @@ function gaugeFactor(max, sections) {
     return max / 180
 }
 
-function makeGaugeChart(dates) {
+function makeGaugeChart(todayDates) {
     // Estimate very fast as 2 chews per second
     const factor = gaugeFactor((60 * 2), 6);
-    const recentChews = recentFreqChews(dates) || factor;
+    const recentChews = recentFreqChews(todayDates) || factor;
     let level = Math.floor(recentChews / factor);
     // cap to 180
     if (level > 180) {
@@ -227,11 +227,9 @@ function makeGaugeChart(dates) {
 }
 
 
-function makeProgressChart(dates) {
-    const recentChews = chewsToday(dates);
-
+function makeProgressChart(todayDates) {
     const current = {
-        x: [recentChews.length],
+        x: [todayDates.length],
         y: ['chews'],
         type: 'bar',
         orientation: 'h',
