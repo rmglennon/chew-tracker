@@ -1,5 +1,7 @@
-.jumbotron {
+.jumbotron-fluid {
     background-color: #ff66ff;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
 }
 
 .grid-item {
