@@ -244,23 +244,24 @@ function makeGaugeChart(todayDates) {
 function makeProgressChart(todayDates) {
     const current = {
         x: [todayDates.length],
-        y: ['chews'],
+        y: ['Chews'],
         type: 'bar',
         orientation: 'h',
+        name: 'Chews',
         marker: {
-            color: 'rgba(255,153,51,0.6)',
+            color: 'rgba(0,255,255,1.0)',
             width: 1
         }
     };
 
     const goal = {
         x: [10000],
-        y: ['chews'],
+        y: ['Chews'],
         type: 'bar',
         orientation: 'h',
-        labels: ['goal'],
+        name: '10k Goal',
         marker: {
-            color: 'rgba(255,103,51,0.6)',
+            color: 'rgba(0,0,255,1.0)',
             width: 1
         }
     };
@@ -270,7 +271,6 @@ function makeProgressChart(todayDates) {
     const layout = {
         title: 'Progress Today',
         height: 200,
-        // width: 505,
         barmode: 'stack',
     };
     Plotly.react('progress-bar', data, layout);
