@@ -141,10 +141,25 @@ function recentFreqChews(dates) {
     )).length;
 }
 
+/**
+ * Helper method to get gauge factor. The number of chews per 1 degree of 180
+ * @param {number} max - number of chews considered to be very fast on gauge
+ * @param {number} sections - number of guage sections shown
+ */
+function gaugeFactor(max, sections) {
+    const chewsPerSection = (max / (sections - 1)) * sections;
+    return max / 180
+}
+
 function makeGaugeChart(dates) {
-    let recentChews = recentFreqChews(dates) || 1.333;
     // Estimate very fast as 2 chews per second
-    const level = Math.floor(recentChews / 1.333);
+    const factor = gaugeFactor((60 * 2), 6);
+    const recentChews = recentFreqChews(dates) || factor;
+    let level = Math.floor(recentChews / factor);
+    // cap to 180
+    if (level > 180) {
+        level = 180
+    }
 
     // Trig to calc meter point
     const degrees = 180 - level,
@@ -171,14 +186,18 @@ function makeGaugeChart(dates) {
       { values: [50/6, 50/6, 50/6, 50/6, 50/6, 50/6, 50],
       rotation: 90,
       text: ['TOO FAST!', 'Pretty Fast', 'Fast', 'Average',
-                'Slow', 'Super Slow', ''],
+             'Slow', 'Super Slow', ''],
       textinfo: 'text',
       textposition:'inside',
-      marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
-                             'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
-                             'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
-                             'rgba(255, 255, 255, 0)']},
-      labels: ['151-180', '121-150', '91-120', '61-90', '31-60', '0-30', ''],
+      marker: {
+          colors: [
+              'rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
+              'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
+              'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
+              'rgba(255, 255, 255, 0)',
+          ]
+      },
+      labels: ['240+', '193-240', '145-192', '97-144', '49-96', '0-48', ''],
       hoverinfo: 'label',
       hole: .5,
       type: 'pie',
@@ -194,7 +213,7 @@ function makeGaugeChart(dates) {
             color: '850000'
           }
         }],
-      title: 'Gauge\nSpeed 0-100',
+      title: 'Chew Frequency',
       height: 500,
       width: 500,
       xaxis: {zeroline:false, showticklabels:false,
