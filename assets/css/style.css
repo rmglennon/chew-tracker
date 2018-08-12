@@ -58,11 +58,11 @@ body {
 }
 
 .animated .pacman-top {
-    animation: spin1 0.5s 1s linear;
+    animation: spin1 0.15s 0.15s linear;
 }
 
 .animated .pacman-bottom {
-    animation: spin2 0.5s 1s linear;
+    animation: spin2 0.15s 0.15s linear;
 }
 
 /* Animation*/
