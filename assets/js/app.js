@@ -222,5 +222,43 @@ function makeGaugeChart(dates) {
                  showgrid: false, range: [-1, 1]}
     };
 
-Plotly.react('gauge-chart', data, layout);
+    Plotly.react('gauge-chart', data, layout);
+}
+
+
+function makePieChart(dates) {
+    const didChewToday = chewsToday(dates).length > 0;
+
+    const current = {
+        x: [dates.length],
+        y: ['chews'],
+        type: 'bar',
+        orientation: 'h',
+        marker: {
+            color: 'rgba(255,153,51,0.6)',
+            width: 1
+        }
+    };
+
+    const goal = {
+        x: [10000],
+        y: ['chews'],
+        type: 'bar',
+        orientation: 'h',
+        labels: ['goal'],
+        marker: {
+            color: 'rgba(255,103,51,0.6)',
+            width: 1
+        }
+    };
+
+    const data = [current, goal];
+
+    const layout = {
+        title: 'Progress Today',
+        height: 200,
+        // width: 505,
+        barmode: 'stack',
+    };
+    Plotly.react('progress-bar', data, layout);
 }
