@@ -26,7 +26,7 @@ database.ref().on("value", function (snapshot) {
     const dates = myTimes.map(i => new Date(i));
 
     $('#animated-pacman').addClass('animated');
-    setTimeout(function () { $('#animated-pacman').removeClass('animated') }, 2000);
+    setTimeout(function () { $('#animated-pacman').removeClass('animated') }, 100);
 
     makeScatter(dates);
     makeBarChart(dates);
