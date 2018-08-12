@@ -162,7 +162,7 @@ function gaugeFactor(max, sections) {
 
 function makeGaugeChart(todayDates) {
     // based on 2 minutes
-    const maxChews = (2 * 60) * 2;  // 2 chews per second for 2 minutes
+    const maxChews = (1 * 60) * 2;  // 1 chew per second for 2 minutes
     const intervals = 6;
     // Estimate very fast as 2 chews per second
     const factor = gaugeFactor(maxChews, intervals);
