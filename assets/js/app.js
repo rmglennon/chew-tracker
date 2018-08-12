@@ -46,8 +46,14 @@ function makeBarChart(dates) {
         type: 'histogram',
     };
 
+    var layout = {
+		title: 'Chews in Time',
+		width: 500,
+		height: 450,
+    };
+
     var data = [trace];
-    Plotly.react('histogram', data);
+    Plotly.react('histogram', data, layout);
 }
 
 function makeScatter(dates) {
@@ -97,8 +103,8 @@ function makeBubbleChart(dates) {
 
     var layout = {
         title: 'With bubbles',
-        height: 400,
-        width: 480
+        height: 450,
+        width: 500
     };
 
     Plotly.react('bubble-chart', data, layout);
@@ -125,7 +131,7 @@ function makePieChart(todayDates) {
     const layout = {
         title: 'Did you chew today?',
         height: 300,
-        width: 475,
+        width: 500,
     };
     Plotly.react('pie-chart', data, layout);
 }
@@ -206,15 +212,15 @@ function makeGaugeChart(todayDates) {
       textposition:'inside',
       marker: {
           colors: [
-              'rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
-              'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
-              'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
+              'rgba(14, 127, 0, .5)', 'rgba(170, 54, 22, .5)',
+              'rgba(10, 20, 100, .5)', 'rgba(255, 109, 95, .5)',
+              'rgba(210, 206, 145, 1)', 'rgba(122, 26, 202, .5)',
               'rgba(255, 255, 255, 0)',
           ]
       },
       labels,
       hoverinfo: 'label',
-      hole: .5,
+      hole: .4,
       type: 'pie',
       showlegend: false
     }];
@@ -229,7 +235,7 @@ function makeGaugeChart(todayDates) {
           }
         }],
       title: 'Chew Frequency',
-      height: 500,
+      height: 450,
       width: 500,
       xaxis: {zeroline:false, showticklabels:false,
                  showgrid: false, range: [-1, 1]},
@@ -249,7 +255,7 @@ function makeProgressChart(todayDates) {
         orientation: 'h',
         name: 'Chews',
         marker: {
-            color: 'rgba(0,255,255,1.0)',
+            color: 'rgba(230,25,25,0.5)',
             width: 1
         }
     };
@@ -261,7 +267,7 @@ function makeProgressChart(todayDates) {
         orientation: 'h',
         name: '10k Goal',
         marker: {
-            color: 'rgba(0,0,255,1.0)',
+            color: 'rgba(123,57,255,0.3)',
             width: 1
         }
     };
@@ -270,7 +276,8 @@ function makeProgressChart(todayDates) {
 
     const layout = {
         title: 'Progress Today',
-        height: 200,
+        height: 450,
+        width: 500,
         barmode: 'stack',
     };
     Plotly.react('progress-bar', data, layout);
