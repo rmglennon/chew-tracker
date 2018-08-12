@@ -8,10 +8,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// let url = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/GDP-data.json"
-// let xl = []
-// let yl = []
-
 database.ref().on("value", function(snapshot) {
    // console.log('EVENT: value')
     console.log(snapshot.val())
@@ -29,27 +25,16 @@ database.ref().on("value", function(snapshot) {
     }
     console.log(myTimes);
     //const dates = snapshot.val().data[i][0];
-    // const dates = snapshot.val().map(i => i[0]);
-    // // const vals = snapshot.val().data[0][1];
-    // const vals = snapshot.val().map(i => i[1]);
 
-    // xl.push(singleDate);
-    // yl.push(singleVal);
-    // console.log(snapshot.val().data[0][1]);
+    const dates = myTimes.map(i => new Date(i));
 
-    // let trace = {
-    //     x: dates,
-    //     y: vals,
-    // }
-
-    // Plotly.plot(document.getElementById("graph"), [trace]);
-    // Plotly.newPlot("div#graph", trace);
-        // let data = figure.data
-        // for (var i = 0; i < data.length; i++) {
-        //     xl.push(data[i][0])
-        //     yl.push(data[i][1])
-        // }
-
-        // Plotly.plot(document.getElementById("graph"), [trace]);
-    // });
+    console.log(dates);
+    var trace1 = {
+        x: myTimes,
+        type: 'scatter'
+      };
+      
+      var data = [trace1];
+      
+      Plotly.newPlot("graph", data);
 });
