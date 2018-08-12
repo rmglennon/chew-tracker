@@ -13,16 +13,50 @@
         crossorigin="anonymous">
 
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 
     <script src="./assets/js/app.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Nom Nom Nom</h1>
+            <p class="lead">Here are your chew stats.</p>
+        </div>
 
-    <div id="graph"></div>
+        <div class="grid-item" id="animated-pacman">
+            <div class="pacman">
+                <div class="pacman-top"></div>
+                <div class="pacman-bottom"></div>
+            </div>
+        </div>
+        
+        <div class="grid-item col-md-4">
+            <h3>Your goals:</h3>
+            <p>10,000 chews</p>
+        </div>
 
+        <div class="grid-item">
+            <div id="line-graph"></div>
+        </div>
+        <div class="grid-item">
+            <div id="histogram"></div>
+        </div>
+
+        <div class="grid-item">
+            <div id="bubble-chart"></div>
+        </div>
+
+
+    </div>
 </body>
 
 </html>

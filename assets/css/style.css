@@ -1,0 +1,61 @@
+.jumbotron {
+    background-color: #ff66ff;
+}
+
+.grid-item {
+    width: auto;
+    height: 50%;
+}
+
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+.pacman {
+    margin: 50px 50px;
+}
+
+.pacman-top {
+    background-color: yellow;
+    height: 100px;
+    width: 200px;
+    border-radius: 100px 100px 0 0;
+    transform: rotate(-22deg);
+}
+
+.pacman-bottom {
+    background-color: yellow;
+    height: 100px;
+    width: 200px;
+    border-radius: 0 0 100px 100px;
+    transform: rotate(22deg);
+}
+
+.animated .pacman-top {
+    animation: spin1 0.5s 1s linear;
+}
+
+.animated .pacman-bottom {
+    animation: spin2 0.5s 1s linear;
+}
+
+/* Animation*/
+
+@keyframes spin1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-35deg);
+    }
+}
+
+@keyframes spin2 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(35deg);
+    }
+}
