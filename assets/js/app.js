@@ -153,9 +153,12 @@ function gaugeFactor(max, sections) {
 }
 
 function makeGaugeChart(todayDates) {
+    // based on 2 minutes
+    const maxChews = (2 * 60) * 2;  // 2 chews per second for 2 minutes
+    const intervals = 6;
     // Estimate very fast as 2 chews per second
-    const factor = gaugeFactor((60 * 2), 6);
-    const recentChews = recentFreqChews(todayDates) || factor;
+    const factor = gaugeFactor(maxChews, intervals);
+    const recentChews = recentFreqChews(todayDates) || 1;
     let level = Math.floor(recentChews / factor);
     // cap to 180
     if (level > 180) {
@@ -176,6 +179,17 @@ function makeGaugeChart(todayDates) {
          pathY = String(y),
          pathEnd = ' Z';
     const path = mainPath.concat(pathX,space, pathY,pathEnd);
+
+    // TODO: intervals also affects how the graph looks
+    const labels = [''];
+    const chewPerInterval = maxChews / (intervals - 1);
+    for (let i = 0; i < intervals; i++) {
+        if (i + 1 == intervals) {
+            labels.unshift(`${maxChews + 1}+`)
+        } else {
+            labels.unshift(`${i * chewPerInterval +1}-${(i + 1) * chewPerInterval}`);
+        }
+    }
 
     const data = [{ type: 'scatter',
        x: [0], y:[0],
@@ -198,7 +212,7 @@ function makeGaugeChart(todayDates) {
               'rgba(255, 255, 255, 0)',
           ]
       },
-      labels: ['240+', '193-240', '145-192', '97-144', '49-96', '0-48', ''],
+      labels,
       hoverinfo: 'label',
       hole: .5,
       type: 'pie',
