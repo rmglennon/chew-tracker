@@ -65,6 +65,8 @@ function makeScatter(dates) {
 
     var layout = {
         title: 'Your recent chews',
+        width: 500,
+        height: 450,
         xaxis: {
             title: 'Time',
             titlefont: {
